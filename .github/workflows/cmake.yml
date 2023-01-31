@@ -16,7 +16,7 @@ env:
 jobs:
   build-and-test:
 
-    name: ${{ matrix.toolchain }}-Qt-${{ matrix.qt_version }}-shared-${{ matrix.shared }}
+    name: ${{ matrix.os }}-Qt-${{ matrix.qt_version }}-shared-${{ matrix.shared }}
     runs-on: ${{ matrix.os }}
     
 
@@ -27,25 +27,6 @@ jobs:
         os: [ubuntu-20.04, ubuntu-22.04, macos-11, macos-12, windows-2019, windows-2022]
         qt_version: [5.12.12, 5.15.2, 6.4.0]
         shared: [ON, OFF]
-
-        toolchain:
-          - linux-gcc
-          - macos-clang
-          - windows-msvc
-
-        configuration:
-          - Release
-
-        include:
-          - toolchain: linux-gcc
-            compiler: gcc
-
-          - toolchain: macos-clang
-            compiler: clang
-
-          - toolchain: windows-msvc
-            compiler: msvc
-
 
     steps:
     - name: Checkout Code
